@@ -11,10 +11,10 @@ import spinner from '../../assets/spinner.gif';
 function ProductList() {
   // const [state, dispatch] = useStoreContext();
   const dispatch = useDispatch()
-  const state = useSelector(state => state)
+  // ProductList component will only re-render when the products slice of the Redux state changes
+  const products = useSelector(state => state.products)
 
-
-  const { currentCategory } = state;
+  const { currentCategory } = products;
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
@@ -39,10 +39,10 @@ function ProductList() {
 
   function filterProducts() {
     if (!currentCategory) {
-      return state.products;
+      return products;
     }
 
-    return state.products.filter(
+    return products.filter(
       (product) => product.category._id === currentCategory
     );
   }
@@ -50,7 +50,7 @@ function ProductList() {
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
-      {state.products.length ? (
+      {products.length ? (
         <div className="flex-row">
           {filterProducts().map((product) => (
             <ProductItem
