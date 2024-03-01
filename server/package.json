@@ -7,7 +7,7 @@
     "start": "node server.js",
     "watch": "nodemon",
     "seed": "node config/seeds.js",
-    "build": "npm i"
+    "build": "npm run build"
   },
   "keywords": [],
   "author": "",
